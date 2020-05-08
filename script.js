@@ -12,19 +12,21 @@ const AIGUILLESEC = document.querySelector("#second");
 function demarrerLaMontre() {
     //Extraire l'heure actuel à l'aide de l'objet Date()
 
-    const heurActuel = new Date();
+    let heurActuel = new Date();
 
     let sec = heurActuel.getSeconds();
-    let secDeg = sec * 6;
-    AIGUILLESEC.style.transform = 'rotate(' + secDeg + 'deg)';
+    let secDeg = ((sec / 60) * 360);
 
     let min = heurActuel.getMinutes();
-    let minDeg = (min * 6) + (0.1 * sec);
-    AIGUILLEMIN.style.transform = 'rotate(' + minDeg + 'deg)';
+    let minDeg = ((min / 60) * 360) + ((sec / 60) * 6);
 
 
     let hr = heurActuel.getHours();
-    let hrDeg = (hr * 30) + (0.5 * min);
+    let hrDeg = ((hr / 12) * 360) + ((min / 60) * 30);
+
+
+    AIGUILLESEC.style.transform = 'rotate(' + secDeg + 'deg)';
+    AIGUILLEMIN.style.transform = 'rotate(' + minDeg + 'deg)';
     AIGUILLEHR.style.transform = 'rotate(' + hrDeg + 'deg)';
 
 }
